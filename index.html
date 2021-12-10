@@ -1,0 +1,80 @@
+<meta charset="UTF-8"> <!-- bật tiếng Việt -->
+<script src="/socket.io/socket.io.js"></script> <!-- thêm thư viện để dùng được các hàm websocket client - file này sẽ được tạo file mở socket server -->
+<script>
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+};
+console.log(isMobile.any())
+  var socket = io.connect(`https://frozen-mesa-23401.herokuapp.com`);
+  socket.on('connect', function () {
+    console.log();
+  console.log("Đã kết nối tới socket server")
+  socket.emit('joinRoom', 'arduino');
+
+  });
+  socket.on('update', function (room) {
+    console.log(room);
+  });
+  socket.on('serverOn',() =>{
+    console.log('ooooo')
+  })
+
+  var bat = function() {
+  if(isMobile.any()){
+    fetch('http://localhost:80/on',{
+      method: 'POST'
+    })
+  }
+  else{
+  console.log("Bật") //debug - báo bật
+	socket.emit("on") // gửi sự kiện "bật" đến Server
+  }
+  }
+  
+  var tat = function() {
+   if(isMobile.any()){
+    fetch('http://localhost:80/off',{
+      method: 'POST'
+    })
+  }
+  else{
+  console.log("Tắt") 
+	socket.emit("off")
+  }
+  }
+  
+  var nhapnhay = function() {
+    if(isMobile.any()){
+    fetch('http://localhost:80/blink',{
+      method: 'POST'
+    })
+    return
+  }
+	console.log("Nhấp nháy")
+	socket.emit("blink")
+  }
+</script>
+
+<button onclick="bat()">Bật</button> <!-- Khi nhấn nút Bật thì gọi lệnh bat() ở client -->
+<br /> <!-- xuống dòng -->
+<button onclick="tat()">Tắt</button>
+<br /> <!-- xuống dòng -->
+<button onclick="nhapnhay()">Nhấp nháy</button>
+<br /> <!-- xuống dòng -->
