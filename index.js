@@ -64,92 +64,92 @@ iot.ledOFF = function() {
     console.log("ledON called");
     iot.led.stop().off();
 };
-io.on('connection', function(socket) { //sau khi client kết nối tới server 
-	//khi server nhận được yêu cầu "bật" từ client
-	socket.on('joinRoom', (room) => {
-		console.log('someone join', room)
-		socket.join(room)
-	})
-	socket.on('on', () =>{
-		console.log('bật')
-		io.in('arduino').emit('onLed', 'arduino');
-		// socket.in('room1').emit('update', 'arduino');
-	});
-	//khi server nhận được yêu cầu "tắt" từ client
-	socket.on('off', function() {
-		console.log("tắt")
-	});
-	//khi server nhận được yêu cầu "nhấp nháy" từ client
-	socket.on('blink', function() {
-		console.log("nhấp nháy")
-	});
-});
-if(process.env.envi === 'dev'){
-	  socketClient.on('connect', () =>{
-		  socketClient.emit('joinRoom', 'arduino');
-		  console.log('connect client')
+// io.on('connection', function(socket) { //sau khi client kết nối tới server 
+// 	//khi server nhận được yêu cầu "bật" từ client
+// 	socket.on('joinRoom', (room) => {
+// 		console.log('someone join', room)
+// 		socket.join(room)
+// 	})
+// 	socket.on('on', () =>{
+// 		console.log('bật')
+// 		io.in('arduino').emit('onLed', 'arduino');
+// 		// socket.in('room1').emit('update', 'arduino');
+// 	});
+// 	//khi server nhận được yêu cầu "tắt" từ client
+// 	socket.on('off', function() {
+// 		console.log("tắt")
+// 	});
+// 	//khi server nhận được yêu cầu "nhấp nháy" từ client
+// 	socket.on('blink', function() {
+// 		console.log("nhấp nháy")
+// 	});
+// });
+// if(process.env.envi === 'dev'){
+// 	  socketClient.on('connect', () =>{
+// 		  socketClient.emit('joinRoom', 'arduino');
+// 		  console.log('connect client')
 
-	  })
-	  socketClient.on('update', function (room) {
-		console.log(room);
-	  });
-	  socketClient.on("blink", () =>{
-		console.log('123')
-	})
-	socketClient.on("serverOn", () =>{
-		console.log('dkm')
-	})
-	socketClient.on("onLed", () =>{
-		iot.ledON()
-		console.log('onled')
-	})
-	socketClient.on("offLed", () =>{
-		console.log('led off')
-		iot.ledOFF()
-	})
-	socketClient.on("blinkLed", () =>{
-		console.log('led blink')
-		iot.startBlink()
-	})
-	socketClient.on('disconnect', (reason) => {
-		console.log("client disconnected");
-		if (reason === 'io server disconnect') {
-		  // the disconnection was initiated by the server, you need to reconnect manually
-		  console.log("server disconnected the client, trying to reconnect");
-		  socketClient.connect();
-		}else{
-			console.log("trying to reconnect again with server");
-		}
-		// else the socket will automatically try to reconnect
-	  });
+// 	  })
+// 	  socketClient.on('update', function (room) {
+// 		console.log(room);
+// 	  });
+// 	  socketClient.on("blink", () =>{
+// 		console.log('123')
+// 	})
+// 	socketClient.on("serverOn", () =>{
+// 		console.log('dkm')
+// 	})
+// 	socketClient.on("onLed", () =>{
+// 		iot.ledON()
+// 		console.log('onled')
+// 	})
+// 	socketClient.on("offLed", () =>{
+// 		console.log('led off')
+// 		iot.ledOFF()
+// 	})
+// 	socketClient.on("blinkLed", () =>{
+// 		console.log('led blink')
+// 		iot.startBlink()
+// 	})
+// 	socketClient.on('disconnect', (reason) => {
+// 		console.log("client disconnected");
+// 		if (reason === 'io server disconnect') {
+// 		  // the disconnection was initiated by the server, you need to reconnect manually
+// 		  console.log("server disconnected the client, trying to reconnect");
+// 		  socketClient.connect();
+// 		}else{
+// 			console.log("trying to reconnect again with server");
+// 		}
+// 		// else the socket will automatically try to reconnect
+// 	  });
 
-	  socketClient.on('error', (error) => {
-		console.log(error);
-	});
-}
+// 	  socketClient.on('error', (error) => {
+// 		console.log(error);
+// 	});
+// }
   app.get('/', function(req, res) { //tạo webserver khi truy nhập đường dẫn "/".
   console.log(process.env.envi)
-  if(process.env.envi === 'dev'){
+//   if(process.env.envi === 'dev'){
 
 
-  io.on('connection', function(socket) { //sau khi client kết nối tới server 
-	//khi server nhận được yêu cầu "bật" từ client
-	console.log('CONNECT')
-	socket.on('on', () =>{
-		console.log('bật')
-	});
-	//khi server nhận được yêu cầu "tắt" từ client
-	socket.on('off', function() {
-		iot.ledOFF()
-		console.log("tắt")
-	});
-	//khi server nhận được yêu cầu "nhấp nháy" từ client
-	socket.on('blink', function() {
-		iot.startBlink()
-		console.log("nhấp nháy")
-	});
-});
-  }
+//   io.on('connection', function(socket) { //sau khi client kết nối tới server 
+// 	//khi server nhận được yêu cầu "bật" từ client
+// 	console.log('CONNECT')
+// 	socket.on('on', () =>{
+// 		console.log('bật')
+// 	});
+// 	//khi server nhận được yêu cầu "tắt" từ client
+// 	socket.on('off', function() {
+// 		iot.ledOFF()
+// 		console.log("tắt")
+// 	});
+// 	//khi server nhận được yêu cầu "nhấp nháy" từ client
+// 	socket.on('blink', function() {
+// 		iot.startBlink()
+// 		console.log("nhấp nháy")
+// 	});
+// });
+//   }
 
   res.sendfile(__dirname + '/index.html'); // thì mở nội dung ở file index.html lên
 });
