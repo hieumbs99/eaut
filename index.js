@@ -31,9 +31,7 @@ var five = require("johnny-five"); //Gọi thư viện Johnny-five
   var board = new five.Board(); //Tạo board Arduino từ thư viện
    
   
-  server.listen(process.env.PORT || 80, () => {
-	console.log("Listening on port 80");
-  });
+
 
   var iot = {};
 
@@ -173,5 +171,8 @@ module.exports = {
 	iot: iot, 
 	// io: io
 }
+server.listen(process.env.PORT || 80, () => {
+	console.log("Listening on port 80");
+  });
 console.log("Đã khởi động socket server")
   
