@@ -21,10 +21,10 @@ app.use(json());
 	// req.io = io;
 	next();
 	})
-  const socketClient = require("socket.io-client")('https://frozen-mesa-23401.herokuapp.com',{
-	reconnection: true,
-	reconnectionDelay: 10000
-  })
+//   const socketClient = require("socket.io-client")('https://frozen-mesa-23401.herokuapp.com',{
+// 	reconnection: true,
+// 	reconnectionDelay: 10000
+//   })
 
 var five = require("johnny-five"); //Gọi thư viện Johnny-five
 
@@ -100,7 +100,7 @@ iot.ledOFF = function() {
 // 	socketClient.on("onLed", () =>{
 // 		iot.ledON()
 // 		console.log('onled')
-// 	})
+// 	}) 
 // 	socketClient.on("offLed", () =>{
 // 		console.log('led off')
 // 		iot.ledOFF()
