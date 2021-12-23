@@ -281,7 +281,7 @@ let handleMessage = (sender_psid, received_message) => {
                             {
                                 "type": "postback",
                                 "title": "Yes!",
-                                "payload": "yes",
+                                "payload": "yes", 
                             },
                             {
                                 "type": "postback",
