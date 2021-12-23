@@ -18,7 +18,7 @@ app.use(json());
 //   });
   app.use(cors())
   app.use(function(req,res,next){
-	req.io = io;
+	// req.io = io;
 	next();
 	})
   const socketClient = require("socket.io-client")('https://frozen-mesa-23401.herokuapp.com',{
