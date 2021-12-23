@@ -170,7 +170,7 @@ app.post('/blink', (req,res) =>{
 app.get('/webhook', webhookControllers.getWebhook)
 app.post('/webhook', webhookControllers.postWebhook)
 module.exports = {
-	iot: iot,
+	iot: iot, 
 	// io: io
 }
 console.log("Đã khởi động socket server")
