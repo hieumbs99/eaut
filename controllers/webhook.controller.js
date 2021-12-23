@@ -2,7 +2,6 @@ require("dotenv").config();
 const request = require("request");
 const fetch = require("node-fetch");
 const fs = require('fs');
-const {io} = require('../index')
 const {HaNoi} = require('../db/hn')
 let getHomepage = (req, res) => {
     return res.render("homepage.ejs");
@@ -49,17 +48,17 @@ let postWebhook = (req, res) => {
             let webhook_event = entry.messaging[0];
             console.log('post back 2', webhook_event?.postback)
             console.log('nlp', webhook_event?.message?.nlp?.entities);
-            if(webhook_event?.message?.text){
-                if(webhook_event.message.text.includes('bật') ){
-                    req.io.in('arduino').emit('onLed', 'arduino');
-                }
-                if(webhook_event.message.text.includes('tắt') ){
-                    req.io.in('arduino').emit('offLed', 'arduino');
-                }
-                if(webhook_event.message.text.includes('nhấp')){
-                    req.io.in('arduino').emit('blinkLed', 'arduino');
-                }
-            }
+            // if(webhook_event?.message?.text){
+            //     if(webhook_event.message.text.includes('bật') ){
+            //         req.io.in('arduino').emit('onLed', 'arduino');
+            //     }
+            //     if(webhook_event.message.text.includes('tắt') ){
+            //         req.io.in('arduino').emit('offLed', 'arduino');
+            //     }
+            //     if(webhook_event.message.text.includes('nhấp')){
+            //         req.io.in('arduino').emit('blinkLed', 'arduino');
+            //     }
+            // }
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);

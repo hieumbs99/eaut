@@ -11,11 +11,11 @@ app.use(urlencoded({ extended: true }));
 
 // Parse application/json
 app.use(json());
-const io = require('socket.io')(server, {
-	cors: {
-	  origin: '*',
-	}
-  });
+// const io = require('socket.io')(server, {
+// 	cors: {
+// 	  origin: '*',
+// 	}
+//   });
   app.use(cors())
   app.use(function(req,res,next){
 	req.io = io;
@@ -171,7 +171,7 @@ app.get('/webhook', webhookControllers.getWebhook)
 app.post('/webhook', webhookControllers.postWebhook)
 module.exports = {
 	iot: iot,
-	io: io
+	// io: io
 }
 console.log("Đã khởi động socket server")
   
