@@ -174,5 +174,5 @@ module.exports = {
 server.listen(process.env.PORT || 80, () => {
 	console.log("Listening on port 80");
   });
-console.log("Đã khởi động socket server")
+console.log("Đã khởi động socket server ", process.env.PORT)
   
