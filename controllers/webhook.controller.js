@@ -296,7 +296,10 @@ let handleMessage = (sender_psid, received_message) => {
     }
 
     // Send the response message
-    callSendAPI(sender_psid, response);
+    response2 = {
+        "text": `You sent the message: "${received_message.text}". Now send me an image!`
+      }
+    callSendAPI(sender_psid, response2);
 };
 
 // Handles messaging_postbacks events
