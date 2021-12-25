@@ -231,34 +231,34 @@ let handleMessage = (sender_psid, received_message) => {
         }
     }
 
-    if (status && status.confidence > 0.8) {
-        console.log(received_message.message)
-        switch (status.value) {
-            case 'blink':
-                response = {
-                    "text": 'Đèn đang nhấp nháy'
-                }  
-                break;
-            case 'on':
-                response = {
-                    "text": 'Đèn đang bật'
-                }  
-                break;
-            case 'off':
-                response = {
-                    "text": 'Đèn tắt'
-                }  
-                break
-            default:
-                break;
-        }
-       } else { 
-      // default logic
-      console.log('Dont Know', received_message)
-      response = {
-          text: "Bot chưa hiểu bạn hãy thử lại nhé"
-      }
-    }
+    // if (status && status.confidence > 0.8) {
+    //     console.log(received_message.message)
+    //     switch (status.value) {
+    //         case 'blink':
+    //             response = {
+    //                 "text": 'Đèn đang nhấp nháy'
+    //             }  
+    //             break;
+    //         case 'on':
+    //             response = {
+    //                 "text": 'Đèn đang bật'
+    //             }  
+    //             break;
+    //         case 'off':
+    //             response = {
+    //                 "text": 'Đèn tắt'
+    //             }  
+    //             break
+    //         default:
+    //             break;
+    //     }
+    //    } else { 
+    //   // default logic
+    //   console.log('Dont Know', received_message)
+    //   response = {
+    //       text: "Bot chưa hiểu bạn hãy thử lại nhé"
+    //   }
+    // }
     // Checks if the message contains text
     if (received_message.text) {
         // Create the payload for a basic text message, which
