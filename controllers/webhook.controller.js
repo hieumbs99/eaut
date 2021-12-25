@@ -103,6 +103,7 @@ let handleMessage = (sender_psid, received_message) => {
             const filterFood = JSON?.parse(`[${content}]`).filter(item => {
                 return item.Name.toLowerCase().includes(arrayParams[1].toLowerCase())
             })
+            console.log("logger", filterFood, arrayParams)
             const responseWithFood = filterFood.map(item =>{
                 return(
                     {
